@@ -1,0 +1,5 @@
+#@data/values
+---
+namespace:
+  name: my-project
+  description: My Argo CD project
