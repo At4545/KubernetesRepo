@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-new-project             # The name of your new Kubernetes namespace
+  labels:
+    managed-by: argocd
+    environment: production
+  annotations:
+    project-owner: "platform-team"
+    onboarding-date: "2026-08-31"  # Track when it was added
+    billing-id: "chargeback-99"
