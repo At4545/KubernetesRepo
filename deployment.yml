@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ytt-plugin-config
+  namespace: argocd
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: ytt
+    spec:
+      generate:
+        command: ["sh", "-c"]
+        args:
+          - 'ytt -f projects/templates -f "projects/$ARGOCD_ENV_PROJECT"'

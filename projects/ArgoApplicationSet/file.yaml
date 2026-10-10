@@ -1,0 +1,36 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: project-namespaces
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - git:
+        repoURL: https://github.com/At4545/KubernetesRepo.git
+        revision: main
+        directories:
+          - path: projects/*
+          - path: projects/templates
+            exclude: true
+  template:
+    metadata:
+      name: 'ns-{{ .path.basename | replace "_" "-" }}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/At4545/KubernetesRepo.git
+        targetRevision: main
+        path: .
+        plugin:
+          name: ytt
+          env:
+            - name: PROJECT
+              value: '{{ .path.basename }}'
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

@@ -1,5 +1,5 @@
 #@data/values
 ---
 namespace:
-  name: app007001-frontend
+  name: app007001-checking
   description: My Argo CD project
