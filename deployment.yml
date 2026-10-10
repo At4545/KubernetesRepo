@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ytt-templated-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # Replace this with your actual Git repository URL containing your ytt templates
+    repoURL: 'https://github.com/At4545/KubernetesRepo.git'
+    targetRevision: HEAD
+    path: projects/templates # The folder inside your repo where your ytt files live
+    
+    # CRUCIAL: Point explicitly to the custom plugin we registered
+    plugin:
+      name: ytt
+      
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
