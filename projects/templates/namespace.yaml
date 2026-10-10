@@ -1,21 +1,8 @@
+#@ load("@ytt:data", "data")
+---
 apiVersion: v1
-kind: ConfigMap
+kind: Namespace
 metadata:
-  name: ytt-plugin-config
-  namespace: argocd
-data:
-  plugin.yaml: |
-    apiVersion: argoproj.io/v1alpha1
-    kind: ConfigManagementPlugin
-    metadata:
-      name: ytt
-    spec:
-      generate:
-        command:
-          - sh
-          - -c
-        args:
-          - |
-            ytt \
-              -f projects/templates/namespace.yml \
-              -f projects/app_frontend/value.yaml
+  name: #@ data.values.namespace.name
+  annotations:
+    description: #@ data.values.namespace.description
