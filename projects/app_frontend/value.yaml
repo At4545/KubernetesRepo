@@ -1,5 +1,5 @@
 #@data/values
 ---
 namespace:
-  name: my-project
+  name: app007001-frontend
   description: My Argo CD project
