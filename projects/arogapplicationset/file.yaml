@@ -16,7 +16,7 @@ spec:
             exclude: true
   template:
     metadata:
-      name: 'ns-{{ .path.basename }}'
+      name: 'ns-{{ .path.basename | replace "_" "-" }}'
     spec:
       project: default
       source:
