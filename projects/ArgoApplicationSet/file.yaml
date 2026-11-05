@@ -16,7 +16,7 @@ spec:
             exclude: true
   template:
     metadata:
-      name: '{{ .path.basename }}'
+      name: 'ns-argo-application-set'
     spec:
       project: default
       source:
